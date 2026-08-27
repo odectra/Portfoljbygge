@@ -126,7 +126,7 @@ function volatility12m(rows) {
 const round4 = (n) => (n === null ? null : Math.round(n * 10000) / 10000)
 
 async function fetchOne(stock) {
-  const rows = await fetchHistory(toStooqSymbol(stock))
+  const rows = await fetchHistory(toYahooSymbol(stock))
   return {
     price: Math.round(rows[rows.length - 1].close * 100) / 100,
     momentum12m: round4(momentum12m(rows)),
@@ -149,7 +149,7 @@ async function main() {
   let failCount = 0
 
   for (const stock of TICKERS) {
-    const symbol = toStooqSymbol(stock)
+    const symbol = toYahooSymbol(stock)
     try {
       stocks[stock.id] = await fetchOne(stock)
       okCount++
