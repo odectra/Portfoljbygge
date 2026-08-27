@@ -39,10 +39,10 @@ jobs:
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
       - name: Trigger Pages deploy
-        # TEMPORARY: gate removed for one push to confirm the dispatch call
-        # itself works (today's prices won't differ, so `changed` would
-        # otherwise stay false) — restoring the `if:` gate immediately after.
-        # if: steps.commit.outputs.changed == 'true'
+        # A GITHUB_TOKEN-authored push doesn't trigger other workflows'
+        # `push` events (loop prevention), so deploy.yml wouldn't otherwise
+        # pick up today's prices — dispatch it explicitly instead.
+        if: steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run deploy.yml --ref main
