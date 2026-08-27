@@ -81,7 +81,13 @@ async function fetchHistory(symbol) {
   })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const csv = await res.text()
-  if (!csv.startsWith('Date,')) throw new Error(`unexpected response: ${csv.slice(0, 80)}`)
+  if (!csv.startsWith('Date,')) {
+    const server = res.headers.get('server')
+    const cfRay = res.headers.get('cf-ray')
+    throw new Error(
+      `unexpected response (status=${res.status} server=${server} cf-ray=${cfRay}): ${csv.slice(0, 300)}`,
+    )
+  }
   const rows = csv
     .trim()
     .split('\n')
