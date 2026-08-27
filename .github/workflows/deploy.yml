@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - claude/stock-portfolio-app-a9pzw6
   workflow_dispatch:
 
 permissions:
