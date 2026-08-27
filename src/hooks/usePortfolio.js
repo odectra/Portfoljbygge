@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { STOCKS } from '../data/stocks'
+import { STOCKS, PRICES_AS_OF } from '../data/stocks'
 import { loadState, saveState, clearState, DEFAULT_STATE } from '../lib/storage'
 
 /**
  * Central app state: settings, holdings and purchase history, persisted to
- * localStorage. Also exposes a simulated "price fetch" so every data view
- * has a real loading state to render — when the Börsdata integration is
- * wired in (see src/data/stocks.js), `pricesLoading` becomes the actual
- * fetch status.
+ * localStorage. Prices are a static daily snapshot bundled at build time
+ * (see src/data/stocks.js / scripts/fetch-prices.mjs), so `pricesLoading`
+ * just gives every data view a brief, real-feeling loading state on mount.
  */
 export function usePortfolio() {
   const [state, setState] = useState(loadState)
@@ -17,8 +16,6 @@ export function usePortfolio() {
     saveState(state)
   }, [state])
 
-  // Mock data is local, but we simulate a short fetch so loading skeletons
-  // behave the way they will with a real API.
   useEffect(() => {
     const t = setTimeout(() => setPricesLoading(false), 900)
     return () => clearTimeout(t)
@@ -73,6 +70,7 @@ export function usePortfolio() {
 
   return {
     stocks: STOCKS,
+    pricesAsOf: PRICES_AS_OF,
     settings: state.settings,
     holdings: state.holdings,
     history: state.history,

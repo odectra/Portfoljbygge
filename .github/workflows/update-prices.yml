@@ -1,0 +1,36 @@
+name: Update stock prices
+
+on:
+  schedule:
+    # 17:30 UTC, weekdays — safely after Stockholm close (17:30 CET/CEST close) year-round.
+    - cron: '30 17 * * 1-5'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/fetch-prices.mjs'
+      - '.github/workflows/update-prices.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: node scripts/fetch-prices.mjs
+      - name: Commit and push if prices changed
+        run: |
+          if git diff --quiet -- src/data/prices.json; then
+            echo "No price changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/prices.json
+          git commit -m "Update stock prices ($(date -u +%Y-%m-%d))"
+          git push

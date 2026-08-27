@@ -168,7 +168,8 @@ export default function Onboarding({ onComplete }) {
       </Card>
 
       <p className="mt-6 text-center text-xs text-slate-400">
-        Demo app with mock market data — not investment advice.
+        Prices are the previous close, refreshed daily. Fundamentals are curated periodically,
+        not live. Not investment advice.
       </p>
     </div>
   )

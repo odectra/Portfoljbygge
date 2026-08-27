@@ -37,23 +37,38 @@ npm run dev
 
 Then open the printed URL (default `http://localhost:5173`).
 
-## Mock data & Börsdata
+## Data
 
-All market data is **mock data** — realistic-looking but invented numbers for
-40 real Swedish large/mid cap names. See `src/data/stocks.js`, which also
-contains a detailed **BÖRSDATA INTEGRATION** section describing exactly which
-Börsdata API endpoints and KPI ids replace each mock field, how to map
-instrument ids, subscription tier requirements (Pro for Nordic, Pro Global for
-global markets) and a sensible refresh cadence (daily close data). Your own
-API key goes in `.env.local` as `VITE_BORSDATA_API_KEY` (see `.env.example`).
+Prices, 12-month momentum and 12-month volatility are **live** — fetched
+daily (weekdays, after Stockholm close) from [Stooq](https://stooq.com), a
+free, no-key source of delayed end-of-day data, by
+`scripts/fetch-prices.mjs` running in `.github/workflows/update-prices.yml`.
+The result is committed to `src/data/prices.json` and bundled at build time;
+see the top of `src/data/stocks.js` for the merge logic and fallback
+behaviour if a ticker's fetch fails.
+
+Fundamentals (P/E, EV/EBIT, margins, ROE, cash-flow yield) are **hand-curated**
+in `src/data/stocks.js` from public company reports, refreshed roughly
+quarterly — they change slowly enough that this doesn't need to be live, and
+there's no free, redistributable source for them the way there is for price
+history.
+
+This app deliberately does **not** integrate Börsdata: its API terms only
+permit delivery of data to private individuals for their own analysis, and
+explicitly prohibit building an external system/website/widget that displays
+API data — including a "bring your own key" design where each visitor
+supplies their own key. If you want Börsdata data for your own analysis, use
+their own site, Excel plugin, or Google Sheets add-on instead.
 
 ## Tech
 
 - React 19 + Vite
 - Tailwind CSS v4
-- No backend — everything runs client-side
+- No backend — everything runs client-side; the only server-side piece is
+  the daily GitHub Actions price fetch above
 
 ## Disclaimer
 
-This is a demo. Nothing in this app is investment advice, and none of the
-displayed prices or fundamentals are real.
+Nothing in this app is investment advice. Prices are delayed (previous
+close) and fundamentals are periodically curated, not live — don't use
+either for actual trading decisions.

@@ -96,8 +96,9 @@ export default function SettingsView({ settings, updateSettings, resetAll }) {
       </Card>
 
       <p className="pb-4 text-center text-xs text-slate-400">
-        Stegvis is a demo. All market data is mocked — see src/data/stocks.js for the Börsdata
-        integration notes. Not investment advice.
+        Prices are the previous Stockholm close, fetched daily from free public data — see
+        src/data/stocks.js for details. Fundamentals are curated periodically, not live. Not
+        investment advice.
       </p>
     </div>
   )

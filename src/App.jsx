@@ -70,6 +70,7 @@ export default function App() {
             history={portfolio.history}
             totalInvested={portfolio.totalInvested}
             pricesLoading={portfolio.pricesLoading}
+            pricesAsOf={portfolio.pricesAsOf}
             onStartInvesting={openInvest}
           />
         )}

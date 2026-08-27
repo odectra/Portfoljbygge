@@ -48,6 +48,7 @@ export default function Dashboard({
   history,
   totalInvested,
   pricesLoading,
+  pricesAsOf,
   onStartInvesting,
 }) {
   if (pricesLoading) return <DashboardSkeleton />
@@ -56,6 +57,9 @@ export default function Dashboard({
   const completion = Math.min(1, holdingCount / TARGET_PORTFOLIO_SIZE)
   const portfolioValue = valueHoldings(holdings, stocks)
   const hasHoldings = holdingCount > 0
+  const priceDate = pricesAsOf
+    ? new Date(pricesAsOf).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
+    : null
 
   return (
     <div className="space-y-4">
@@ -64,7 +68,7 @@ export default function Dashboard({
         <Stat
           label="Portfolio value"
           value={formatSEK(portfolioValue)}
-          sub="at latest mock prices"
+          sub={priceDate ? `at prices as of ${priceDate}` : 'at demo prices'}
         />
         <Stat
           label="Holdings"
