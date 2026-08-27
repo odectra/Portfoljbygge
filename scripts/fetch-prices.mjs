@@ -1,9 +1,18 @@
 #!/usr/bin/env node
 /**
  * Fetches previous-close EOD prices for the Stegvis stock universe from
- * Stooq (https://stooq.com) — a free, no-key, no-login source of delayed
- * daily OHLC data — and writes src/data/prices.json for the app to read at
- * build time. Run daily by .github/workflows/update-prices.yml.
+ * Yahoo Finance's unofficial chart JSON endpoint — free, no key, no login —
+ * and writes src/data/prices.json for the app to read at build time. Run
+ * daily by .github/workflows/update-prices.yml.
+ *
+ * Stooq (stooq.com) was tried first since its terms are clearer about free
+ * reuse, but its CSV endpoint returns a JavaScript bot-challenge page to
+ * requests from cloud/CI IP ranges (confirmed against GitHub Actions' own
+ * runners) — not fixable by request headers, and not worth building a
+ * browser-automation workaround for. Yahoo's endpoint is undocumented and
+ * technically outside its own ToS for automated reuse, same category of risk
+ * as scraping in general; it's the standard fallback for this exact use case
+ * and, unlike Stooq from a CI IP, actually returns data.
  *
  * Deliberately does NOT use Börsdata: see the note at the top of
  * src/data/stocks.js for why.
@@ -59,43 +68,36 @@ const TICKERS = [
   { id: 'AFRY', ticker: 'AFRY' },
 ]
 
-// Stooq's convention for Nasdaq Stockholm names: lowercase, space→hyphen
-// share-class suffix, ".st" market suffix (e.g. "VOLV B" → "volv-b.st").
-// If a ticker turns out not to follow that pattern, add an override here —
-// check the Action run's log for "FAIL" lines after changing this.
+// Yahoo Finance's convention for Nasdaq Stockholm names: uppercase,
+// space→hyphen share-class suffix, ".ST" market suffix
+// (e.g. "VOLV B" → "VOLV-B.ST"). If a ticker turns out not to follow that
+// pattern, add an override here — check the Action run's log for "FAIL"
+// lines after changing this.
 const SYMBOL_OVERRIDES = {}
 
-function toStooqSymbol({ id, ticker }) {
-  return SYMBOL_OVERRIDES[id] ?? ticker.toLowerCase().replace(/\s+/g, '-') + '.st'
+function toYahooSymbol({ id, ticker }) {
+  return SYMBOL_OVERRIDES[id] ?? ticker.toUpperCase().replace(/\s+/g, '-') + '.ST'
 }
 
 async function fetchHistory(symbol) {
-  const url = `https://stooq.com/q/d/l/?s=${encodeURIComponent(symbol)}&i=d`
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=1y&interval=1d`
   const res = await fetch(url, {
     headers: {
-      // Stooq serves a "no data" HTML page to requests with no browser-like UA.
       'User-Agent':
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-      Accept: 'text/csv,text/plain,*/*',
+      Accept: 'application/json',
     },
   })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const csv = await res.text()
-  if (!csv.startsWith('Date,')) {
-    const server = res.headers.get('server')
-    const cfRay = res.headers.get('cf-ray')
-    throw new Error(
-      `unexpected response (status=${res.status} server=${server} cf-ray=${cfRay}): ${csv.slice(0, 300)}`,
-    )
-  }
-  const rows = csv
-    .trim()
-    .split('\n')
-    .slice(1)
-    .map((line) => {
-      const [date, , , , close] = line.split(',')
-      return { date, close: Number(close) }
-    })
+  const body = await res.json()
+  const result = body?.chart?.result?.[0]
+  const err = body?.chart?.error
+  if (err) throw new Error(`Yahoo error: ${err.description ?? JSON.stringify(err)}`)
+  const timestamps = result?.timestamp
+  const closes = result?.indicators?.quote?.[0]?.close
+  if (!timestamps || !closes) throw new Error(`unexpected response shape: ${JSON.stringify(body).slice(0, 300)}`)
+  const rows = timestamps
+    .map((t, i) => ({ date: new Date(t * 1000).toISOString().slice(0, 10), close: closes[i] }))
     .filter((r) => Number.isFinite(r.close))
   if (rows.length === 0) throw new Error('no usable rows')
   return rows

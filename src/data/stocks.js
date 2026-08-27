@@ -3,7 +3,7 @@
  * STOCK UNIVERSE — Swedish large & mid cap
  * ============================================================================
  *
- * price / momentum12m / volatility12m are LIVE, sourced daily from Stooq
+ * price / momentum12m / volatility12m are LIVE, sourced daily from Yahoo Finance
  * (free, delayed end-of-day close data — see scripts/fetch-prices.mjs and
  * .github/workflows/update-prices.yml) and merged in below from
  * src/data/prices.json, which that workflow regenerates and commits once

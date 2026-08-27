@@ -40,9 +40,10 @@ Then open the printed URL (default `http://localhost:5173`).
 ## Data
 
 Prices, 12-month momentum and 12-month volatility are **live** — fetched
-daily (weekdays, after Stockholm close) from [Stooq](https://stooq.com), a
-free, no-key source of delayed end-of-day data, by
-`scripts/fetch-prices.mjs` running in `.github/workflows/update-prices.yml`.
+daily (weekdays, after Stockholm close) from Yahoo Finance's free, no-key
+chart data by `scripts/fetch-prices.mjs` running in
+`.github/workflows/update-prices.yml` (see that script's header comment for
+why Yahoo rather than Stooq, which was tried first).
 The result is committed to `src/data/prices.json` and bundled at build time;
 see the top of `src/data/stocks.js` for the merge logic and fallback
 behaviour if a ticker's fetch fails.
