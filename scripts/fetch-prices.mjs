@@ -71,7 +71,14 @@ function toStooqSymbol({ id, ticker }) {
 
 async function fetchHistory(symbol) {
   const url = `https://stooq.com/q/d/l/?s=${encodeURIComponent(symbol)}&i=d`
-  const res = await fetch(url)
+  const res = await fetch(url, {
+    headers: {
+      // Stooq serves a "no data" HTML page to requests with no browser-like UA.
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+      Accept: 'text/csv,text/plain,*/*',
+    },
+  })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const csv = await res.text()
   if (!csv.startsWith('Date,')) throw new Error(`unexpected response: ${csv.slice(0, 80)}`)
