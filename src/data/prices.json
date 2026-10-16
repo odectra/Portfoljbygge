@@ -1,200 +1,200 @@
 {
-  "asOf": "2026-10-15",
+  "asOf": "2026-10-16",
   "stocks": {
     "VOLV-B": {
-      "price": 319.7,
-      "momentum12m": 0.2055,
-      "volatility12m": 0.2412
+      "price": 325.4,
+      "momentum12m": 0.2133,
+      "volatility12m": 0.2413
     },
     "ERIC-B": {
-      "price": 103.7,
-      "momentum12m": 0.1408,
-      "volatility12m": 0.338
+      "price": 105.65,
+      "momentum12m": 0.1687,
+      "volatility12m": 0.3
     },
     "ATCO-A": {
-      "price": 199.6,
-      "momentum12m": 0.1941,
-      "volatility12m": 0.2638
+      "price": 202.2,
+      "momentum12m": 0.2072,
+      "volatility12m": 0.2936
     },
     "HEXA-B": {
-      "price": 104.25,
-      "momentum12m": -0.0807,
-      "volatility12m": 0.3057
+      "price": 105.25,
+      "momentum12m": -0.0678,
+      "volatility12m": 0.4452
     },
     "SEB-A": {
-      "price": 217.1,
-      "momentum12m": 0.1994,
-      "volatility12m": 0.2004
+      "price": 219.3,
+      "momentum12m": 0.2059,
+      "volatility12m": 0.1991
     },
     "SHB-A": {
-      "price": 151.35,
-      "momentum12m": 0.2162,
-      "volatility12m": 0.2361
+      "price": 153.85,
+      "momentum12m": 0.2377,
+      "volatility12m": 0.2091
     },
     "SWED-A": {
-      "price": 396.8,
-      "momentum12m": 0.3763,
-      "volatility12m": 0.2004
+      "price": 402.5,
+      "momentum12m": 0.401,
+      "volatility12m": 0.1932
     },
     "NDA-SE": {
-      "price": 174.8,
-      "momentum12m": 0.1223,
-      "volatility12m": 0.2105
+      "price": 175.4,
+      "momentum12m": 0.0908,
+      "volatility12m": 0.2063
     },
     "INVE-B": {
-      "price": 413.25,
-      "momentum12m": 0.3372,
-      "volatility12m": 0.1573
+      "price": 422.6,
+      "momentum12m": 0.3716,
+      "volatility12m": 0.1738
     },
     "AZN": {
-      "price": 1675.5,
-      "momentum12m": 0.0433,
-      "volatility12m": 0.2615
+      "price": 1643.5,
+      "momentum12m": 0.0359,
+      "volatility12m": 0.2608
     },
     "HM-B": {
-      "price": 170.5,
-      "momentum12m": -0.0156,
-      "volatility12m": 0.2234
+      "price": 172.4,
+      "momentum12m": -0.0182,
+      "volatility12m": 0.253
     },
     "SAND": {
-      "price": 352.7,
-      "momentum12m": 0.3005,
-      "volatility12m": 0.3021
+      "price": 356.1,
+      "momentum12m": 0.3034,
+      "volatility12m": 0.3407
     },
     "ABB": {
-      "price": 915.4,
-      "momentum12m": 0.2926,
-      "volatility12m": 0.2767
+      "price": 910,
+      "momentum12m": 0.3026,
+      "volatility12m": 0.2699
     },
     "ASSA-B": {
-      "price": 356.3,
-      "momentum12m": 0.0554,
-      "volatility12m": 0.2241
+      "price": 359.5,
+      "momentum12m": 0.0472,
+      "volatility12m": 0.2311
     },
     "ALFA": {
-      "price": 571.4,
-      "momentum12m": 0.2689,
-      "volatility12m": 0.1927
+      "price": 576.4,
+      "momentum12m": 0.2643,
+      "volatility12m": 0.2316
     },
     "SKF-B": {
-      "price": 266.1,
-      "momentum12m": 0.1396,
-      "volatility12m": 0.2632
+      "price": 271.1,
+      "momentum12m": 0.1478,
+      "volatility12m": 0.2696
     },
     "EPI-A": {
-      "price": 260,
-      "momentum12m": 0.2287,
-      "volatility12m": 0.3262
+      "price": 264.2,
+      "momentum12m": 0.2386,
+      "volatility12m": 0.3623
     },
     "TELIA": {
-      "price": 45.66,
-      "momentum12m": 0.2585,
-      "volatility12m": 0.1938
+      "price": 46.31,
+      "momentum12m": 0.28,
+      "volatility12m": 0.188
     },
     "TEL2-B": {
-      "price": 157.95,
-      "momentum12m": -0.0094,
-      "volatility12m": 0.2007
+      "price": 160.2,
+      "momentum12m": 0.0107,
+      "volatility12m": 0.21
     },
     "ESSITY-B": {
-      "price": 275.8,
-      "momentum12m": 0.0828,
-      "volatility12m": 0.2027
+      "price": 277.4,
+      "momentum12m": 0.0694,
+      "volatility12m": 0.199
     },
     "EVO": {
-      "price": 796.8,
-      "momentum12m": 0.1036,
-      "volatility12m": 0.2946
-    },
-    "BETS-B": {
-      "price": 93.4,
-      "momentum12m": -0.3706,
-      "volatility12m": 0.3544
-    },
-    "SAAB-B": {
-      "price": 631.6,
-      "momentum12m": 0.3078,
-      "volatility12m": 0.4609
-    },
-    "IPCO": {
-      "price": 264,
-      "momentum12m": 0.7472,
-      "volatility12m": 0.4048
-    },
-    "BOL": {
-      "price": 528.2,
-      "momentum12m": 0.2642,
-      "volatility12m": 0.467
-    },
-    "SSAB-A": {
-      "price": 101.55,
-      "momentum12m": 0.6604,
-      "volatility12m": 0.3465
-    },
-    "SECU-B": {
-      "price": 162.5,
-      "momentum12m": 0.1582,
-      "volatility12m": 0.2335
-    },
-    "ELUX-B": {
-      "price": 26.86,
-      "momentum12m": -0.4901,
-      "volatility12m": 0.8836
-    },
-    "GETI-B": {
-      "price": 259.2,
-      "momentum12m": 0.245,
-      "volatility12m": 0.2448
-    },
-    "EKTA-B": {
-      "price": 55.55,
-      "momentum12m": 0.1612,
-      "volatility12m": 0.4036
-    },
-    "HUSQ-B": {
-      "price": 35.03,
-      "momentum12m": -0.303,
-      "volatility12m": 0.2743
-    },
-    "TREL-B": {
-      "price": 462.8,
-      "momentum12m": 0.3029,
-      "volatility12m": 0.228
-    },
-    "AXFO": {
-      "price": 264.5,
-      "momentum12m": -0.0726,
-      "volatility12m": 0.3115
-    },
-    "SKA-B": {
-      "price": 265.1,
-      "momentum12m": -0.003,
-      "volatility12m": 0.2203
-    },
-    "AZA": {
-      "price": 376.3,
-      "momentum12m": 0.004,
-      "volatility12m": 0.2519
-    },
-    "NIBE-B": {
-      "price": 44.36,
-      "momentum12m": 0.2204,
-      "volatility12m": 0.3799
-    },
-    "LIFCO-B": {
-      "price": 328.2,
-      "momentum12m": -0.0168,
+      "price": 800,
+      "momentum12m": 0.1145,
       "volatility12m": 0.2761
     },
+    "BETS-B": {
+      "price": 92.45,
+      "momentum12m": -0.3766,
+      "volatility12m": 0.3559
+    },
+    "SAAB-B": {
+      "price": 650.2,
+      "momentum12m": 0.3455,
+      "volatility12m": 0.479
+    },
+    "IPCO": {
+      "price": 269.8,
+      "momentum12m": 0.8366,
+      "volatility12m": 0.3789
+    },
+    "BOL": {
+      "price": 533.6,
+      "momentum12m": 0.2793,
+      "volatility12m": 0.4222
+    },
+    "SSAB-A": {
+      "price": 103.1,
+      "momentum12m": 0.7235,
+      "volatility12m": 0.3056
+    },
+    "SECU-B": {
+      "price": 163.7,
+      "momentum12m": 0.1689,
+      "volatility12m": 0.2332
+    },
+    "ELUX-B": {
+      "price": 27.6,
+      "momentum12m": -0.4845,
+      "volatility12m": 0.8555
+    },
+    "GETI-B": {
+      "price": 261.6,
+      "momentum12m": 0.2253,
+      "volatility12m": 0.246
+    },
+    "EKTA-B": {
+      "price": 57.05,
+      "momentum12m": 0.17,
+      "volatility12m": 0.4822
+    },
+    "HUSQ-B": {
+      "price": 35.71,
+      "momentum12m": -0.2912,
+      "volatility12m": 0.268
+    },
+    "TREL-B": {
+      "price": 469.8,
+      "momentum12m": 0.3025,
+      "volatility12m": 0.2386
+    },
+    "AXFO": {
+      "price": 268.9,
+      "momentum12m": -0.0631,
+      "volatility12m": 0.2844
+    },
+    "SKA-B": {
+      "price": 269.4,
+      "momentum12m": 0.0205,
+      "volatility12m": 0.2349
+    },
+    "AZA": {
+      "price": 365.7,
+      "momentum12m": -0.024,
+      "volatility12m": 0.2461
+    },
+    "NIBE-B": {
+      "price": 44.72,
+      "momentum12m": 0.2265,
+      "volatility12m": 0.3715
+    },
+    "LIFCO-B": {
+      "price": 329.2,
+      "momentum12m": -0.0144,
+      "volatility12m": 0.2641
+    },
     "INDT": {
-      "price": 269.6,
-      "momentum12m": 0.1531,
-      "volatility12m": 0.4178
+      "price": 270.8,
+      "momentum12m": 0.1573,
+      "volatility12m": 0.4124
     },
     "AFRY": {
-      "price": 105,
-      "momentum12m": -0.3682,
-      "volatility12m": 0.2253
+      "price": 105.4,
+      "momentum12m": -0.3662,
+      "volatility12m": 0.2254
     }
   }
 }
